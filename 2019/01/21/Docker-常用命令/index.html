@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives | 云和山的彼端</title>
+  <title>Docker 常用命令 | 云和山的彼端</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -59,7 +59,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -161,87 +161,92 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 </div>
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>CODING CAT</h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>你永远不知道坐在电脑前的是个人还是只猫。</p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/21/Docker-常用命令/">Docker 常用命令</a></h4>
-                            
-                            <p><time datetime="2019-01-21T09:55:54.000Z"><a href="/2019/01/21/Docker-常用命令/">2019-01-21</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/12/11/webpack4从零新建react项目流程及采坑/">webpack4从零新建react项目流程及采坑</a></h4>
-                            
-                            <p><time datetime="2018-12-11T12:15:26.000Z"><a href="/2018/12/11/webpack4从零新建react项目流程及采坑/">2018-12-11</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/11/17/nrm/">使用nrm来管理npm的源</a></h4>
-                            
-                            <p><time datetime="2018-11-17T00:13:54.000Z"><a href="/2018/11/17/nrm/">2018-11-17</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-01-21T09:55:54.000Z" itemprop="datePublished">
+          2019-01-21
+      </time>
+    
+</span>
+                <h1>Docker 常用命令</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker images          <span class="comment"># 列出所有镜像(images)</span></span><br><span class="line">docker ps              <span class="comment"># 列出正在运行的容器(containers)</span></span><br><span class="line">docker ps -a           <span class="comment"># 列出所有的容器</span></span><br><span class="line">docker pull xxx        <span class="comment"># 下载xxx镜像</span></span><br><span class="line">docker top &lt;container&gt; <span class="comment"># 查看容器内部运行的程序</span></span><br></pre></td></tr></table></figure>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker stop &lt;container&gt;                  <span class="comment"># 停止一个正在运行的容器，&lt;container&gt;可以是容器ID或名称</span></span><br><span class="line">docker start &lt;container&gt;                 <span class="comment"># 启动一个已经停止的容器</span></span><br><span class="line">docker restart &lt;container&gt;               <span class="comment"># 重启容器</span></span><br><span class="line">docker rm &lt;container&gt;                    <span class="comment"># 删除容器</span></span><br><span class="line"></span><br><span class="line">docker run -i -t -p :80 LAMP /bin/bash   <span class="comment"># 运行容器并做http端口转发</span></span><br><span class="line">docker <span class="built_in">exec</span> -it &lt;container&gt; /bin/bash    <span class="comment"># 进入ubuntu类容器的bash</span></span><br><span class="line">docker <span class="built_in">exec</span> -it &lt;container&gt; /bin/sh      <span class="comment"># 进入alpine类容器的sh</span></span><br><span class="line"></span><br><span class="line">docker rm `docker ps -a -q`              <span class="comment"># 删除所有已经停止的容器</span></span><br><span class="line">docker <span class="built_in">kill</span> $(docker ps -a -q)           <span class="comment"># 杀死所有正在运行的容器，$()功能同``</span></span><br></pre></td></tr></table></figure>
+<h2 id="提交-导出"><a href="#提交-导出" class="headerlink" title="提交/导出"></a>提交/导出</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker build --rm=<span class="literal">true</span> -t hjue/lamp .    <span class="comment"># 建立映像文件。–rm 选项是告诉Docker，在构建完成后删除临时的Container，Dockerfile的每一行指令都会创建一个临时的Container，一般这些临时生成的Container是不需要的</span></span><br><span class="line">docker commit xxxxxxxxxxx mynewimage    <span class="comment"># 提交你的变更，并且把容器保存成镜像，命名为mynewimage，xxxxxxxxxxx为容器的ID</span></span><br><span class="line"></span><br><span class="line">docker save mynewimage | bzip2 -9 -c&gt; /home/save.tar.bz2  <span class="comment"># 把 mynewimage 镜像保存成 tar 文件</span></span><br><span class="line">bzip2 -d -c &lt; /home/save.tar.bz2 | docker load            <span class="comment"># 加载 mynewimage 镜像</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> &lt;CONTAINER ID&gt; &gt; /home/export.tar           <span class="comment"># 导出Image</span></span><br><span class="line">cat /home/export.tar | sudo docker import - mynewimage    <span class="comment"># 导入Image镜像</span></span><br></pre></td></tr></table></figure>
+<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t centos /bin/bash          <span class="comment"># 运行centos镜像</span></span><br><span class="line">docker run -d -p 80:80 hjue/centos-lamp    <span class="comment"># 运行centos-lamp镜像</span></span><br><span class="line"></span><br><span class="line">docker rmi [image-id]                      <span class="comment"># 删除镜像</span></span><br><span class="line">docker rmi $(docker images -q)             <span class="comment"># 删除所有镜像</span></span><br><span class="line">docker rmi $(sudo docker images --filter <span class="string">"dangling=true"</span> -q --no-trunc)  <span class="comment"># 删除无用镜像</span></span><br></pre></td></tr></table></figure>
+<h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2018/12/11/webpack4从零新建react项目流程及采坑/">
+        webpack4从零新建react项目流程及采坑 →
+    </a>
+    
+</nav>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>这只是暂时的结束。</p>
-        </div>
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
