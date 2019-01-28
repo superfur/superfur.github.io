@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>你不知道的Chrome调试工具技巧集合 | 云和山的彼端</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="云和山的彼端">
+    <meta name="author" content="Septem">
+    <meta name="description" content="风起于青萍之末" />
+    <meta name="keywords" content="JavaScript" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="云和山的彼端" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close">
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">云和山的彼端</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://superfur.github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+</div>
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-01-28T10:00:00.000Z" itemprop="datePublished">
+          2019-01-28
+      </time>
+    
+</span>
+                <h1>你不知道的Chrome调试工具技巧集合</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="Console中的’-’"><a href="#Console中的’-’" class="headerlink" title="Console中的’$’"></a>Console中的’$’</h2><ol>
+<li>$0  <blockquote>
+<p>$可以保存5次对于dom节点的选择操作，$0是最近一次选中的节点，$1是上一次选中的dom节点，直到$4</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/7/16785c75b56d3a80?imageslim" alt="图片1"></p>
+<ol start="2">
+<li><p><code>$</code>和<code>$$</code></p>
+<blockquote>
+<p>如果<code>$</code>没有被占用的话（比如jquery或者zepto），在<code>console</code>中相当于<code>document.querySelector</code>的别名<br><code>$$</code>则相当于<code>document.querySelectorAll</code>，且返回的是节点数组而非 Node List</p>
+</blockquote>
+</li>
+<li><p><code>$_</code>  </p>
+<blockquote>
+<p><code>$_</code>是对上次执行结果的引用</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/7/16785d333e7c1d7f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="图片2"></p>
+<ol start="4">
+<li><code>$i</code>  <blockquote>
+<p>在<a href="https://chrome.google.com/webstore/detail/console-importer/hgajpakhafplebkdljleajgbpdmplhie/related的帮助下" target="_blank" rel="noopener">Chrome插件: Console Importer</a>，可以款速的在<code>console</code>中引入<code>npm</code>库<br>比如直接<code>$i(&#39;lodash&#39;)</code>或<code>$i(&#39;moment&#39;)</code>几秒钟之后，就可以获取到<code>lodash / moment</code>了<br>（对于有的网站 是有CSP安全策略的，这时候加载外部资料是有限制的，加载不成功的）</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/7/16785da0dea963fb?imageslim" alt="图片3"></p>
+<h2 id="copy-amp-saving"><a href="#copy-amp-saving" class="headerlink" title="copy &amp; saving"></a>copy &amp; saving</h2><ol start="5">
+<li><code>copy(...)</code>  <blockquote>
+<p>通过全局方法<code>copy()</code>可以在<code>console</code>中<code>copy</code>一切你能拿到的资源，包含<code>$</code>类引用的变量，例如<code>copy($_)</code>或者<code>copy($0)</code></p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/7/16787442a1444125?imageslim" alt="图片4"></p>
+<ol start="6">
+<li>Store as global<blockquote>
+<p>当你使用<code>console</code>打印出一堆数据的时候，你希望对这些变量进行一些额外的操作，只需要对这行数据右键单击，选择<code>Store as global variable</code>，就会创建一个<code>tempX</code>的变量，进行后续操作，且不用担心原始数据被重写</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/7/167874429e8b8f73?imageslim" alt="图片5"></p>
+<h2 id="Console-Methods"><a href="#Console-Methods" class="headerlink" title="Console Methods"></a>Console Methods</h2><ol start="7">
+<li><code>console.assert</code><blockquote>
+<p>如果断言为false，则将一个错误消息写入控制台。如果断言是true，没有任何反应。</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.assert(assertion, obj1 [, obj2, ..., objN]);</span><br><span class="line"><span class="built_in">console</span>.assert(assertion, msg [, subst1, ..., substN]); <span class="comment">// c-like message formatting</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/7/167893640b5cdd71?imageslim" alt="图片6"></p>
+<ol start="8">
+<li><code>console.table</code><blockquote>
+<p><code>console.table</code>会将一个Array、类Array类型或者Object类型的数据以漂亮的表格形式打印出来</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/7/167893640e9ba1d3?imageslim" alt="图片7"></p>
+<ol start="9">
+<li><code>console.dir</code><blockquote>
+<p>当我们希望打印dom节点的时候，使用<code>console.log</code>会有局限性。这时我们可以使用<code>console.dir</code>方法，这个方法可以将dom节点以JavaScript对象的方式在控制台打印出来</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/7/1678936410bb79fa?imageslim" alt="图片8"></p>
+<h2 id="The-Elements-panel"><a href="#The-Elements-panel" class="headerlink" title="The Elements panel"></a>The Elements panel</h2><ol start="10">
+<li><code>h</code>快捷键<blockquote>
+<p>可以通过<code>h</code>快捷键来快速隐藏选中的元素</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/9/1679379780c11ef3?imageslim" alt="图片9"></p>
+<ol start="11">
+<li>drag &amp; drop elements<blockquote>
+<p>可以通过拖拽dom元素使之放置在相应的节点</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/9/16793797bde74b62?imageslim" alt="图片10"></p>
+<h2 id="让人疑惑的console-log"><a href="#让人疑惑的console-log" class="headerlink" title="让人疑惑的console.log"></a>让人疑惑的<code>console.log</code></h2><ol start="12">
+<li><code>console.log</code>有时打印出与预期不符的对象<blockquote>
+<p>在<code>console</code>中打印的对象，在打印之前，都是以引用的形式保存的</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/11/1679a0d3a708ef3e?imageslim" alt="图片11"></p>
+<h2 id="Command菜单"><a href="#Command菜单" class="headerlink" title="Command菜单"></a>Command菜单</h2><p>// TODO</p>
+<h2 id="异步console的调试技巧"><a href="#异步console的调试技巧" class="headerlink" title="异步console的调试技巧"></a>异步console的调试技巧</h2><ol start="13">
+<li>使用console异步调试<blockquote>
+<p>越来越多与浏览器有关的API都是 基于<code>Promise</code>的 。当你使用 <code>promise</code> 的时候你通常使用 <code>.then(处理方法)</code> 或者 将它 ( <code>promise</code> ) 包裹在 async 方法中，并且使用 await 来接收它的结果。  </p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>我们在 <code>JavaScript/TypeScript</code> 中大量使用这些东西，但是在 <code>Console</code> 中书写这样的结构，一点都不方便。</p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/12/1679e0201c187733?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="图片12"></p>
+<blockquote>
+<p>然后，其实你可以直接这样使用</p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/12/1679e0201c5c5fd7?imageslim" alt="图片13"></p>
+<h2 id="Color-Picker"><a href="#Color-Picker" class="headerlink" title="Color Picker"></a>Color Picker</h2><ol start="14">
+<li>Color Picker使用方法  </li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/12/167a1d2cc62a8d0f?imageslim" alt="图片14"></p>
+<h2 id="给-console-计时"><a href="#给-console-计时" class="headerlink" title="给 console 计时"></a>给 <code>console</code> 计时</h2><ol start="15">
+<li>检测执行时间</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.time() <span class="comment">// 开启一个时间器</span></span><br><span class="line"><span class="built_in">console</span>.timeEnd() <span class="comment">// 结束计时并将结果打印出来</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/13/167a484d3824545d?imageslim" alt="图片15"><br></p>
+<h2 id="样式编辑器"><a href="#样式编辑器" class="headerlink" title="样式编辑器"></a>样式编辑器</h2><ol start="16">
+<li>插入样式规则的按钮<blockquote>
+<p>当你把鼠标放在样式选择器的选择区域的最后时，你会看到几个按钮，它们可以让你快速的使用 Color 和 Shadow 编辑器添加 CSS 属性。</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/14/167ac1748b954754?imageslim" alt="图片16"></p>
+<ol start="17">
+<li>阴影编辑器</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/14/167ac17a4194c870?imageslim" alt="图片17"></p>
+<h2 id="对象-amp-方法"><a href="#对象-amp-方法" class="headerlink" title="对象 &amp; 方法"></a>对象 &amp; 方法</h2><ol start="18">
+<li><code>queryObjects function</code> 对象查询方法</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/18/167c07a88c45b6bd?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="图片18"></p>
+<blockquote>
+<p>假如我们有这样一段代码，我们在里面定义了一些对象。name在特定的上下文中，有哪些存在的对象呢。</p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/18/167c07a88ed68f7f?imageslim" alt="图片19"></p>
+<ol start="19">
+<li>给<code>console.log</code>加上<code>css</code>样式</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/20/167c99ea0788464b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="图片20"></p>
+<h2 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h2><ol start="20">
+<li>DOM 断点<blockquote>
+<p>某些脚本会修改 DOM 的一部分，不确定修改的是哪部分，甚至不确定是什么时候修改的。<br>添加一个 DOM 断点。你就可以监听到节点被添加或者移除，或属性被改变。</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2019/1/22/168746caeae2a94e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="图片21"></p>
+<blockquote>
+<p>当断点添加过多或者子元素断点被父元素折叠的时候，在<code>Element</code>中会被高亮展示</p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2019/1/22/168747517998eb7d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="图片22"></p>
+<ol start="21">
+<li>XHR/fetch 断点<blockquote>
+<p>当你想捕获已发送的 <code>ajax</code> 请求中的特定时刻， 可以使用 XHR/fetch breakpoint。<br>这些只能在 Source 面板中设置。（Network 面板中不可以）</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2019/1/22/16874662814db12c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="图片22"></p>
+<h2 id="The-NinJa-logs"><a href="#The-NinJa-logs" class="headerlink" title="The NinJa logs"></a>The NinJa logs</h2><ol start="22">
+<li>条件断点<blockquote>
+<p>当有一个循环对 200 个元素的遍历，但你只对第 110 次循环的结果感兴趣，或者只对一些满足其他的特殊条件的结果感兴趣时，就需要一个条件断点。</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>右击行号并且选择 <code>Add conditional breakpoint...</code> 的选项</li>
+<li>或者右击一个已经设置的断点并且选择 <code>Edit breakpoint</code></li>
+<li>然后输入一个执行结果为 <code>true</code> 或者 <code>false</code> 的表达式（其实会有隐式转换的）。</li>
+</ul>
+<p>之后，满足条件，断点就会执行</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/17/167b94b8f36112b7?imageslim" alt="图片22"></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2019/01/21/Docker-常用命令/">
+        Docker 常用命令 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Septem. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://superfur.github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>
