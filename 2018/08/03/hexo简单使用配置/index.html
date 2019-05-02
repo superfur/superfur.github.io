@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="在日常中，存在很多需要切换npm源的情况，通过nrm可以方便的切换npm的源。">
+  <meta name="description" content="next主题非常的火爆，(next主题文档)[http://theme-next.iissnan.com/third-party-services.html]">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用nrm来管理npm的源">
-<meta property="og:url" content="http://blog.superfur.top/2018/11/17/nrm/index.html">
+<meta property="og:title" content="hexo简单使用配置">
+<meta property="og:url" content="http://blog.superfur.top/2018/08/03/hexo简单使用配置/index.html">
 <meta property="og:site_name" content="云和山的彼端">
-<meta property="og:description" content="在日常中，存在很多需要切换npm源的情况，通过nrm可以方便的切换npm的源。">
+<meta property="og:description" content="next主题非常的火爆，(next主题文档)[http://theme-next.iissnan.com/third-party-services.html]">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-18T07:22:55.608Z">
+<meta property="og:updated_time" content="2019-05-02T08:11:40.189Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用nrm来管理npm的源">
-<meta name="twitter:description" content="在日常中，存在很多需要切换npm源的情况，通过nrm可以方便的切换npm的源。">
+<meta name="twitter:title" content="hexo简单使用配置">
+<meta name="twitter:description" content="next主题非常的火爆，(next主题文档)[http://theme-next.iissnan.com/third-party-services.html]">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://blog.superfur.top/2018/11/17/nrm/">
+  <link rel="canonical" href="http://blog.superfur.top/2018/08/03/hexo简单使用配置/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>使用nrm来管理npm的源 | 云和山的彼端</title>
+  <title>hexo简单使用配置 | 云和山的彼端</title>
   
 
 
@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.superfur.top/2018/11/17/nrm/">
+    <link itemprop="mainEntityOfPage" href="http://blog.superfur.top/2018/08/03/hexo简单使用配置/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Septem">
@@ -311,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用nrm来管理npm的源
+          <h1 class="post-title" itemprop="name headline">hexo简单使用配置
 
               
             
@@ -337,7 +337,7 @@
                 
               
 
-              <time title="Created: 2018-11-17 00:13:54" itemprop="dateCreated datePublished" datetime="2018-11-17T00:13:54Z">2018-11-17</time>
+              <time title="Created: 2018-08-02 16:09:47" itemprop="dateCreated datePublished" datetime="2018-08-02T16:09:47Z">2018-08-02</time>
             
 
             
@@ -354,7 +354,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-18 07:22:55" itemprop="dateModified" datetime="2018-11-18T07:22:55Z">2018-11-18</time>
+                <time title="Modified: 2019-05-02 08:11:40" itemprop="dateModified" datetime="2019-05-02T08:11:40Z">2019-05-02</time>
               
             
           </span>
@@ -388,20 +388,7 @@
       
 
       
-        <p>在日常中，存在很多需要切换npm源的情况，通过nrm可以方便的切换npm的源。</p>
-<a id="more"></a>
-<h2 id="nrm使用"><a href="#nrm使用" class="headerlink" title="nrm使用"></a>nrm使用</h2><ol>
-<li><p>安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g nrm</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看nrm命令或者帮助文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm -h</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Usage: nrm [options] [<span class="built_in">command</span>]</span><br><span class="line"> Commands:</span><br><span class="line">   ls                           List all the registries</span><br><span class="line">   current                      Show current registry name</span><br><span class="line">   use &lt;registry&gt;               Change registry to registry</span><br><span class="line">   add &lt;registry&gt; &lt;url&gt; [home]  Add one custom registry</span><br><span class="line">   del &lt;registry&gt;               Delete one custom registry</span><br><span class="line">   home &lt;registry&gt; [browser]    Open the homepage of registry with optional browser</span><br><span class="line">   <span class="built_in">test</span> [registry]              Show response time <span class="keyword">for</span> specific or all registries</span><br><span class="line">   <span class="built_in">help</span>                         Print this <span class="built_in">help</span></span><br><span class="line"> Options:</span><br><span class="line">   -h, --<span class="built_in">help</span>     output usage information</span><br><span class="line">   -V, --version  output the version number</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>常用命令<br><code>nrm ls</code> 查看已有的源<br><code>nrm add &lt;源名称&gt; &lt;源地址&gt;</code> 新增源<br><code>nrm use &lt;源名称&gt;</code> 切换源</li>
-</ol>
+        <p><code>next</code>主题非常的火爆，<br>(<code>next</code>主题文档)[<a href="http://theme-next.iissnan.com/third-party-services.html]" target="_blank" rel="noopener">http://theme-next.iissnan.com/third-party-services.html]</a></p>
 
       
     </div>
@@ -432,18 +419,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/03/hexo简单使用配置/" rel="next" title="hexo简单使用配置">
-                <i class="fa fa-chevron-left"></i> hexo简单使用配置
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/11/webpack4从零新建react项目流程及采坑/" rel="prev" title="webpack4从零新建react项目流程及踩坑">
-                webpack4从零新建react项目流程及踩坑 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/17/nrm/" rel="prev" title="使用nrm来管理npm的源">
+                使用nrm来管理npm的源 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -488,17 +471,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -546,23 +520,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nrm使用"><span class="nav-number">1.</span> <span class="nav-text">nrm使用</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
