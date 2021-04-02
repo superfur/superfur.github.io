@@ -2,44 +2,243 @@
 <!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="
 webpack已经升级到4+版本，无论是create-react-app还是antd-pro要么太重，要么不方便自己对webpack进行配置，因此采用从零开始的方式进行react项目搭建。
 
-webpack4.0版本之后，webpack的配置有了一些明显的变化首先是安装：1234npm install --save-dev webpacknpm install --save-dev webpack-cliornpm install --save-dev webpack-command
+webpack4.0版本之后，webpack的配置有了一些明显的变化首先是安装：
+npm install --save-dev webpack
+npm install --save-dev webpack-cli
+or
+npm install --save-dev webpack-command
 webpack被拆分到了两个包里，其中使用webpack命令，需要安装webpack-cli或webpack-command
-如果是全局安装，那么这样设置package.json1234&amp;quot;scripts&amp;quot;.."><meta name="generator" content="Hexo 5.4.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Septem's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">webpack4从零新建react项目流程及踩坑</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack"><span class="toc-text">webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">安装依赖</span></a></li></ol></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">webpack4从零新建react项目流程及踩坑</h1><time class="has-text-grey" datetime="2018-12-11T12:15:26.000Z">2018-12-11</time><article class="mt-2 post-content"><blockquote>
+如果是全局安装，那么这样设置package.json
+&amp;quot;scripts&amp;quot;: &amp;.."><meta name="generator" content="Hexo 5.4.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Septem's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">webpack4从零新建react项目流程及踩坑</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack"><span class="toc-text">webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">安装依赖</span></a></li></ol></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">webpack4从零新建react项目流程及踩坑</h1><time class="has-text-grey" datetime="2018-12-11T12:15:26.000Z">2018-12-11</time><article class="mt-2 post-content"><blockquote>
 <p>webpack已经升级到4+版本，无论是create-react-app还是antd-pro要么太重，要么不方便自己对webpack进行配置，因此采用从零开始的方式进行react项目搭建。</p>
 </blockquote>
-<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p>4.0版本之后，webpack的配置有了一些明显的变化<br>首先是安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack</span><br><span class="line">npm install --save-dev webpack-cli</span><br><span class="line">or</span><br><span class="line">npm install --save-dev webpack-command</span><br></pre></td></tr></table></figure></p>
-<p>webpack被拆分到了两个包里，其中使用webpack命令，需要安装<code>webpack-cli</code>或<code>webpack-command</code></p>
-<p>如果是全局安装，那么这样设置<code>package.json</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">	&quot;start&quot;: &quot;webpack --mode development&quot;,</span><br><span class="line">	&quot;build&quot;: &quot;webpack --mode production&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果是项目内安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">	&quot;start&quot;: &quot;node_modules/.bin/webpack --mode development&quot;,</span><br><span class="line">	&quot;build&quot;: &quot;node_modules/.bin/webpack --mode production&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><ol>
-<li><p>react及babel相关依赖(babel新的相关包的命名方式已经改为@babel/+name的形式)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react</span><br><span class="line">npm i -S  react react-dom</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建webpack.config.js(webpack4.0的语法与之前差异较大，深坑)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">	rules: [</span><br><span class="line">		&#123;</span><br><span class="line">			test: /\.jsx?$/,</span><br><span class="line">			exclude: /node_modules/,</span><br><span class="line">			use: [</span><br><span class="line">				&#123;</span><br><span class="line">					loader: &apos;babel-loader&apos;,</span><br><span class="line">					options: &#123;</span><br><span class="line">						presets:[&apos;@babel/preset-env&apos;, &apos;@babel/preset-react&apos;]</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			]</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>index.js基础格式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import ReactDOM from &apos;react-dom&apos;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;div&gt;Hello world&lt;/div&gt;,</span><br><span class="line">    document.getElementById(&quot;app&quot;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用html-webpack-plugin对html打包。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D html-webpack-plugin html-loader</span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p>4.0版本之后，webpack的配置有了一些明显的变化<br>首先是安装：</p>
+<pre><code>npm install --save-dev webpack
+npm install --save-dev webpack-cli
+or
+npm install --save-dev webpack-command
+</code></pre><p>webpack被拆分到了两个包里，其中使用webpack命令，需要安装<code>webpack-cli</code>或<code>webpack-command</code></p>
+<p>如果是全局安装，那么这样设置<code>package.json</code></p>
+<pre><code>&quot;scripts&quot;: &#123;
+    &quot;start&quot;: &quot;webpack --mode development&quot;,
+    &quot;build&quot;: &quot;webpack --mode production&quot;
+&#125;
+</code></pre><p>如果是项目内安装</p>
+<pre><code>&quot;scripts&quot;: &#123;
+    &quot;start&quot;: &quot;node_modules/.bin/webpack --mode development&quot;,
+    &quot;build&quot;: &quot;node_modules/.bin/webpack --mode production&quot;
+&#125;
+</code></pre><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><ol>
+<li>react及babel相关依赖(babel新的相关包的命名方式已经改为@babel/+name的形式)</li>
 </ol>
-<p>修改<code>webpack.config.js</code>配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">	module: &#123;</span><br><span class="line">		rules: [</span><br><span class="line">			&#123;</span><br><span class="line">				test: /\.jsx?$/,</span><br><span class="line">				exclude: /node_modules/,</span><br><span class="line">				use: [</span><br><span class="line">					&#123;</span><br><span class="line">						loader: &apos;babel-loader&apos;,</span><br><span class="line">						options: &#123;</span><br><span class="line">							presets:[&apos;@babel/preset-env&apos;, &apos;@babel/preset-react&apos;]</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;,&#123;</span><br><span class="line">				test: /\.html$/,</span><br><span class="line">				use: [</span><br><span class="line">					&#123;</span><br><span class="line">						loader: &quot;html-loader&quot;,</span><br><span class="line">						options: &#123; minimize: true &#125;</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	plugins: [</span><br><span class="line">		new HtmlWebpackPlugin(&#123;</span><br><span class="line">			template: &apos;./public/index.html&apos;,</span><br><span class="line">			filename: &apos;index.html&apos;,</span><br><span class="line">		&#125;)</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol start="5">
-<li>安装<code>webpack-dev-server</code>插件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D webpack-dev-server</span><br></pre></td></tr></table></figure>
-</li>
+<pre><code>npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react
+npm i -S  react react-dom
+</code></pre><ol start="2">
+<li>新建webpack.config.js(webpack4.0的语法与之前差异较大，深坑)</li>
 </ol>
-<p>修改package.json文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">	&quot;start&quot;: &quot;webpack-dev-server --mode development --open&quot;,</span><br><span class="line">	&quot;build&quot;: &quot;webpack --mode production&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<p>修改webpack.config.js文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">	mode: &quot;development&quot;, </span><br><span class="line">	entry: &apos;./src/index.js&apos;, </span><br><span class="line">	output: &#123;</span><br><span class="line">		path: path.resolve(__dirname, &apos;build&apos;),</span><br><span class="line">		filename: &apos;index.js&apos;,</span><br><span class="line">	&#125;,</span><br><span class="line">	module: &#123;</span><br><span class="line">		rules: [</span><br><span class="line">			&#123;</span><br><span class="line">				test: /\.jsx?$/,</span><br><span class="line">				exclude: /node_modules/,</span><br><span class="line">				use: [</span><br><span class="line">					&#123;</span><br><span class="line">						loader: &apos;babel-loader&apos;,</span><br><span class="line">						options: &#123;</span><br><span class="line">							presets:[&apos;@babel/preset-env&apos;, &apos;@babel/preset-react&apos;],</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;,&#123;</span><br><span class="line">				test: /\.html$/,</span><br><span class="line">				use: [</span><br><span class="line">					&#123;</span><br><span class="line">						loader: &quot;html-loader&quot;,</span><br><span class="line">						options: &#123; minimize: true &#125;</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	plugins: [</span><br><span class="line">		new HtmlWebpackPlugin(&#123;</span><br><span class="line">			template: &apos;./public/index.html&apos;,</span><br><span class="line">			filename: &apos;index.html&apos;,</span><br><span class="line">		&#125;)</span><br><span class="line">	],</span><br><span class="line">	devServer:&#123;</span><br><span class="line">		contentBase:path.join(__dirname,&quot;dist&quot;),</span><br><span class="line">		compress:true,</span><br><span class="line">		port:8888,</span><br><span class="line">		host:&apos;127.0.0.1&apos;,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol start="6">
-<li>安装<code>react-hot-loader</code>插件（可选）<blockquote>
+<pre><code>module: &#123;
+    rules: [
+        &#123;
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            use: [
+                &#123;
+                    loader: &#39;babel-loader&#39;,
+                    options: &#123;
+                        presets:[&#39;@babel/preset-env&#39;, &#39;@babel/preset-react&#39;]
+                    &#125;
+                &#125;
+            ]
+        &#125;
+    ]
+&#125;
+</code></pre><ol start="3">
+<li>index.js基础格式</li>
+</ol>
+<pre><code>import React from &#39;react&#39;;
+import ReactDOM from &#39;react-dom&#39;;
+
+ReactDOM.render(
+    &lt;div&gt;Hello world&lt;/div&gt;,
+    document.getElementById(&quot;app&quot;)
+);
+</code></pre><ol start="4">
+<li>使用html-webpack-plugin对html打包。</li>
+</ol>
+<pre><code>npm i -D html-webpack-plugin html-loader
+</code></pre><p>修改<code>webpack.config.js</code>配置</p>
+<pre><code>const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+
+module.exports = &#123;
+    module: &#123;
+        rules: [
+            &#123;
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    &#123;
+                        loader: &#39;babel-loader&#39;,
+                        options: &#123;
+                            presets:[&#39;@babel/preset-env&#39;, &#39;@babel/preset-react&#39;]
+                        &#125;
+                    &#125;
+                ]
+            &#125;,&#123;
+                test: /\.html$/,
+                use: [
+                    &#123;
+                        loader: &quot;html-loader&quot;,
+                        options: &#123; minimize: true &#125;
+                    &#125;
+                ]
+            &#125;
+        ]
+    &#125;,
+    plugins: [
+        new HtmlWebpackPlugin(&#123;
+            template: &#39;./public/index.html&#39;,
+            filename: &#39;index.html&#39;,
+        &#125;)
+    ]
+&#125;
+
+</code></pre><ol start="5">
+<li>安装<code>webpack-dev-server</code>插件</li>
+</ol>
+<pre><code>npm i -D webpack-dev-server
+</code></pre><p>修改package.json文件</p>
+<pre><code>&quot;scripts&quot;: &#123;
+    &quot;start&quot;: &quot;webpack-dev-server --mode development --open&quot;,
+    &quot;build&quot;: &quot;webpack --mode production&quot;
+&#125;,
+</code></pre><p>修改webpack.config.js文件</p>
+<pre><code>const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+
+module.exports = &#123;
+    mode: &quot;development&quot;, 
+    entry: &#39;./src/index.js&#39;, 
+    output: &#123;
+        path: path.resolve(__dirname, &#39;build&#39;),
+        filename: &#39;index.js&#39;,
+    &#125;,
+    module: &#123;
+        rules: [
+            &#123;
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    &#123;
+                        loader: &#39;babel-loader&#39;,
+                        options: &#123;
+                            presets:[&#39;@babel/preset-env&#39;, &#39;@babel/preset-react&#39;],
+                        &#125;
+                    &#125;
+                ]
+            &#125;,&#123;
+                test: /\.html$/,
+                use: [
+                    &#123;
+                        loader: &quot;html-loader&quot;,
+                        options: &#123; minimize: true &#125;
+                    &#125;
+                ]
+            &#125;
+        ]
+    &#125;,
+    plugins: [
+        new HtmlWebpackPlugin(&#123;
+            template: &#39;./public/index.html&#39;,
+            filename: &#39;index.html&#39;,
+        &#125;)
+    ],
+    devServer:&#123;
+        contentBase:path.join(__dirname,&quot;dist&quot;),
+        compress:true,
+        port:8888,
+        host:&#39;127.0.0.1&#39;,
+    &#125;
+&#125;
+
+</code></pre><ol start="6">
+<li>安装<code>react-hot-loader</code>插件（可选）</li>
+</ol>
 <p>webpack中提供了热模块更新的功能，在不刷新整个页面的情况下来替换某些更变的组件，而这样做的最大的好处就在于状态的保存。比如我们前面在输入框中输入的内容，就不会在我们热模块替换以后被刷新掉，让我们要重新再输入一次了。</p>
-</blockquote>
-</li>
-</ol>
-<p>安装插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D react-hot-loader</span><br></pre></td></tr></table></figure></p>
-<p>修改<code>webpack.config.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">	mode: &quot;development&quot;, </span><br><span class="line">	entry: &apos;./src/index.js&apos;, </span><br><span class="line">	output: &#123;</span><br><span class="line">			path: path.resolve(__dirname, &apos;build&apos;),</span><br><span class="line">			filename: &apos;index.js&apos;,</span><br><span class="line">	&#125;,</span><br><span class="line">	module: &#123;</span><br><span class="line">		rules: [</span><br><span class="line">			&#123;</span><br><span class="line">				test: /\.jsx?$/,</span><br><span class="line">				exclude: /node_modules/,</span><br><span class="line">				use: [</span><br><span class="line">					&#123;</span><br><span class="line">						loader: &apos;babel-loader&apos;,</span><br><span class="line">						options: &#123;</span><br><span class="line">							presets:[&apos;@babel/preset-env&apos;, &apos;@babel/preset-react&apos;],</span><br><span class="line">							plugins: [&apos;react-hot-loader/babel&apos;],</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;,&#123;</span><br><span class="line">				test: /\.html$/,</span><br><span class="line">				use: [</span><br><span class="line">					&#123;</span><br><span class="line">						loader: &quot;html-loader&quot;,</span><br><span class="line">						options: &#123; minimize: true &#125;</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	plugins: [</span><br><span class="line">		new HtmlWebpackPlugin(&#123;</span><br><span class="line">			template: &apos;./public/index.html&apos;,</span><br><span class="line">			filename: &apos;index.html&apos;,</span><br><span class="line">		&#125;)</span><br><span class="line">	],</span><br><span class="line">	devServer:&#123;</span><br><span class="line">		contentBase:path.join(__dirname,&quot;dist&quot;),</span><br><span class="line">		compress:true,</span><br><span class="line">		port:8888,</span><br><span class="line">		host:&apos;127.0.0.1&apos;,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>修改<code>./index.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import ReactDom from &apos;react-dom&apos;;</span><br><span class="line">import &#123; AppContainer &#125; from &apos;react-hot-loader&apos;</span><br><span class="line">import App from &apos;./app&apos;;</span><br><span class="line"></span><br><span class="line">const render = Component =&gt; &#123;  </span><br><span class="line">	ReactDom.render(</span><br><span class="line">		&lt;AppContainer&gt;</span><br><span class="line">			&lt;Component /&gt;</span><br><span class="line">		&lt;/AppContainer&gt;,</span><br><span class="line">		document.getElementById(&apos;root&apos;)</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render(App);</span><br><span class="line"></span><br><span class="line">if (module.hot) &#123;</span><br><span class="line">	module.hot.accept(&apos;./app&apos;, () =&gt; &#123; render(App) &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>修改package.json，加入<code>--hot</code>参数启动<code>react-hot-loader</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">	&quot;start&quot;: &quot;webpack-dev-server --hot --mode development --open&quot;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2019/01/21/Docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Docker 常用命令"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: Docker 常用命令</span></a><a class="button is-default" href="/2018/11/17/nrm/" title="使用nrm来管理npm的源"><span class="has-text-weight-semibold">Next: 使用nrm来管理npm的源</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="superfur/superfur.github.io" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> Septem 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
+<p>安装插件</p>
+<pre><code>npm i -D react-hot-loader
+</code></pre><p>修改<code>webpack.config.js</code></p>
+<pre><code>const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+
+module.exports = &#123;
+    mode: &quot;development&quot;, 
+    entry: &#39;./src/index.js&#39;, 
+    output: &#123;
+            path: path.resolve(__dirname, &#39;build&#39;),
+            filename: &#39;index.js&#39;,
+    &#125;,
+    module: &#123;
+        rules: [
+            &#123;
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    &#123;
+                        loader: &#39;babel-loader&#39;,
+                        options: &#123;
+                            presets:[&#39;@babel/preset-env&#39;, &#39;@babel/preset-react&#39;],
+                            plugins: [&#39;react-hot-loader/babel&#39;],
+                        &#125;
+                    &#125;
+                ]
+            &#125;,&#123;
+                test: /\.html$/,
+                use: [
+                    &#123;
+                        loader: &quot;html-loader&quot;,
+                        options: &#123; minimize: true &#125;
+                    &#125;
+                ]
+            &#125;
+        ]
+    &#125;,
+    plugins: [
+        new HtmlWebpackPlugin(&#123;
+            template: &#39;./public/index.html&#39;,
+            filename: &#39;index.html&#39;,
+        &#125;)
+    ],
+    devServer:&#123;
+        contentBase:path.join(__dirname,&quot;dist&quot;),
+        compress:true,
+        port:8888,
+        host:&#39;127.0.0.1&#39;,
+    &#125;
+&#125;
+
+</code></pre><p>修改<code>./index.js</code></p>
+<pre><code>import React from &#39;react&#39;;
+import ReactDom from &#39;react-dom&#39;;
+import &#123; AppContainer &#125; from &#39;react-hot-loader&#39;
+import App from &#39;./app&#39;;
+
+const render = Component =&gt; &#123;  
+    ReactDom.render(
+        &lt;AppContainer&gt;
+            &lt;Component /&gt;
+        &lt;/AppContainer&gt;,
+        document.getElementById(&#39;root&#39;)
+    )
+&#125;
+
+render(App);
+
+if (module.hot) &#123;
+    module.hot.accept(&#39;./app&#39;, () =&gt; &#123; render(App) &#125;)
+&#125;
+</code></pre><p>修改package.json，加入<code>--hot</code>参数启动<code>react-hot-loader</code></p>
+<pre><code>&quot;scripts&quot;: &#123;
+    &quot;start&quot;: &quot;webpack-dev-server --hot --mode development --open&quot;,
+&#125;,
+</code></pre></article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2019/01/21/Docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Docker 常用命令"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: Docker 常用命令</span></a><a class="button is-default" href="/2018/11/17/nrm/" title="使用nrm来管理npm的源"><span class="has-text-weight-semibold">Next: 使用nrm来管理npm的源</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="superfur/superfur.github.io" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> Septem 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
